@@ -3,7 +3,7 @@
 Instructions and sample code for streaming gaze and head pose from [Pico Neo 2 Eye](https://www.pico-interactive.com/us/neo2.html) using [Lab Streaming Layer](github.com/sccn/labstreaminglayer).
 
 ![PicoNeo2Eye LSL](test_data/piconeo2eye_lsl.gif)
-The above plot is very low rate (3 Hz) reconstruction of LSL data recorded while I first looked around at 3 targets, then held my gaze still while moving my head. You can find a 60 Hz reconstruction mp4 in the test_data folder.
+The above plot is very low rate (6 Hz) reconstruction of LSL data recorded while I first looked around at 3 targets, then held my gaze still while moving my head. You can find a 60 Hz reconstruction mp4 in the test_data folder.
 
 ## Getting Started
 
