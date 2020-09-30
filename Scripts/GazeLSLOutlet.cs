@@ -16,7 +16,7 @@ public class GazeLSLOutlet : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        liblsl.StreamInfo streamInfo = new liblsl.StreamInfo(StreamName, StreamType, 12, Time.fixedDeltaTime * 1000, liblsl.channel_format_t.cf_float32, StreamId);
+        liblsl.StreamInfo streamInfo = new liblsl.StreamInfo(StreamName, StreamType, 12, 1 / Time.fixedDeltaTime, liblsl.channel_format_t.cf_float32, StreamId);
         liblsl.XMLElement chans = streamInfo.desc().append_child("channels");
         chans.append_child("channel").append_child_value("label", "Timestamp");
         chans.append_child("channel").append_child_value("label", "ConvergenceDistance");
@@ -35,7 +35,7 @@ public class GazeLSLOutlet : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         var eyeTrackingData = TobiiXR.GetEyeTrackingData(TobiiXR_TrackingSpace.World);
 

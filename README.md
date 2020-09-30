@@ -15,9 +15,13 @@ For LSL, read the [LSL in Unity README](https://github.com/labstreaminglayer/lib
 
 Copy PoseLSLOutlet.cs from this repo's Scripts folder to your project's Scripts folder. Attach it as a component to the `Pvr_UnitySDK > Head` object. When the application is run, head position data will be transmitted over a LSL stream with default name `Unity.VRHeadPose` and type `MoCap`. The channels are 'PosX', 'PosY', 'PosZ', 'RotW', 'RotX', 'RotY', 'RotZ', the last 4 forming a quaternion.
 
+In PoseLSLOutlet.cs, the stream nominal rate is set to 72 Hz, which is the expected update rate of the Unity game when running in the Pico Neo 2 Eye, and head pose is transmitted in `Update`. You could also use `FixedUpdate` and set the rate to `1 / Time.fixedDeltaTime`, as is done for the Gaze data (see below).
+
 ## Streaming Gaze
 
 Copy GazeLSLOutlet.cs from this repo's Scripts folder to your project's Scripts folder. Attach it as a component to the `Pvr_UnitySDK > Head object`. When the application is run, gaze data will be transmitted over a LSL stream with default name `Unity.TobiiGaze` and type `Gaze`. The channels are 'Timestamp', 'ConvergenceDistance', 'ConvergenceDistanceIsValid', 'GazeRayOriginX', 'GazeRayOriginY', 'GazeRayOriginZ', 'GazeRayDirectionX', 'GazeRayDirectionY', 'GazeRayDirectionZ', 'GazeRayIsValid', 'IsLeftEyeBlinking', 'IsRightEyeBlinking'. See `TobiiXR.GetEyeTrackingData` in the [Tobii API docs](https://vr.tobii.com/sdk/develop/unity/documentation/api-reference/) for more info.
+
+Note that this script currently sends gaze data during `FixedUpdate`. Thus, to control the rate of gaze data, you must go into your Unity Edit > Project Settings > Time > and change the `Fixed Timestamp` to be `0.01666667` (i.e., 60 Hz) which is the maximum rate the Tobii module can be sampled at currently. In the future the Tobii module may acquire data at higher rates (i.e., 90 Hz), so you may want to change this value.
 
 ## Streaming Gaze Events
 

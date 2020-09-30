@@ -15,7 +15,7 @@ public class PoseLSLOutlet : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        liblsl.StreamInfo streamInfo = new liblsl.StreamInfo(StreamName, StreamType, 7, Time.fixedDeltaTime * 1000, liblsl.channel_format_t.cf_float32);
+        liblsl.StreamInfo streamInfo = new liblsl.StreamInfo(StreamName, StreamType, 7, 72, liblsl.channel_format_t.cf_float32);
         liblsl.XMLElement chans = streamInfo.desc().append_child("channels");
         chans.append_child("channel").append_child_value("label", "PosX");
         chans.append_child("channel").append_child_value("label", "PosY");
